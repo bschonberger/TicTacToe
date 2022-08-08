@@ -1,0 +1,108 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+
+.fullPage{
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+}
+
+.gameBoard{
+    display:grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
+    gap: 2px;
+    background-color: black;
+}
+
+.gameTile{
+    background-color: gainsboro;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameTile:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+
+
+img{
+    width:50%;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.leftSide, .rightSide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.playerIcon{
+    width: 100px;
+    height: 100px;
+    border-radius: 5%;
+    border: 3px solid black;
+    background-color: white;
+}
+
+.contentX,.contentO{
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.contentO{
+    color: red;
+}
+
+.playerName{
+    font-size: 50px;
+}
+
+#name2{
+    color: red;
+    font-style: border;
+}
+
+#icon1{
+    background-color:sandybrown;
+}
+
+.modal{
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    width: 525px;
+    height: 500px;
+    border: 3px solid black;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.winner{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+button{
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
