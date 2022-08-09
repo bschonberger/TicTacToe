@@ -17,6 +17,13 @@ const right = document.getElementById('right')
 const mainGrid = document.getElementById('mainGrid')
 const winner = document.getElementById('winner')
 const restart = document.getElementById('restart')
+const gameRestart = document.getElementById('gameR')
+const startButton = document.getElementById('startButton')
+const startGameModal = document.getElementById('startGame')
+const main = document.getElementById('main')
+const inputPlayer1 = document.getElementById('inputPlayer1')
+const inputPlayer2 = document.getElementById('inputPlayer2')
+
 
 let currentPlayer = "X"
 
@@ -31,6 +38,8 @@ tile7.addEventListener('click',() => gameController.makeMove(currentPlayer,tile7
 tile8.addEventListener('click',() => gameController.makeMove(currentPlayer,tile8))
 tile9.addEventListener('click',() => gameController.makeMove(currentPlayer,tile9))
 restart.addEventListener('click',() => gameController.clearBoard())
+startButton.addEventListener('click', () => gameController.startTheGame())
+gameRestart.addEventListener('click', () => gameController.clearBoard())
 
 
 const gameBoard = (function() {
@@ -45,6 +54,7 @@ const gameBoard = (function() {
 
 
 const gameController = (function() {
+
     'use strict';
 
     function switchPlayer(){
@@ -59,6 +69,17 @@ const gameController = (function() {
             icon1.style.backgroundColor = "sandybrown"
             icon2.style.backgroundColor = "white"
         }
+    }
+
+    function startTheGame(){
+        startGameModal.style.display = "none"
+        left.style.opacity = 1
+        right.style.opacity = 1
+        mainGrid.style.opacity = 1
+        gameRestart.style.opacity = 1
+        name1.innerHTML = document.getElementById('inputPlayer1').value
+        name2.innerHTML = document.getElementById('inputPlayer2').value
+
     }
 
     function makeMove(player,tile){
@@ -94,6 +115,8 @@ const gameController = (function() {
             left.style.opacity = .1
             right.style.opacity = .1
             mainGrid.style.opacity = .1 
+            gameRestart.style.opacity = .1
+            currentPlayer = "X"
         }
         else{
             winner.innerHTML = string + " has won!"
@@ -101,6 +124,11 @@ const gameController = (function() {
             left.style.opacity = .1
             right.style.opacity = .1
             mainGrid.style.opacity = .1 
+            gameRestart.style.opacity = .1
+            currentPlayer = "X"
+            icon1.style.backgroundColor = "sandybrown"
+            icon2.style.backgroundColor = "white"
+
         }
     }
 
@@ -109,6 +137,7 @@ const gameController = (function() {
         left.style.opacity = 1
         right.style.opacity = 1
         mainGrid.style.opacity = 1 
+        gameRestart.style.opacity = 1
         tile1.innerHTML = ""
         tile2.innerHTML = ""
         tile3.innerHTML = ""
@@ -118,7 +147,9 @@ const gameController = (function() {
         tile7.innerHTML = ""
         tile8.innerHTML = ""
         tile9.innerHTML = ""
-        switchPlayer()
+        currentPlayer = "X"
+        icon1.style.backgroundColor = "sandybrown"
+        icon2.style.backgroundColor = "white"
     }
 
     function checkWinner(){
@@ -178,26 +209,26 @@ const gameController = (function() {
 
         if ((allAreEqual(row1))||(allAreEqual(row2))||(allAreEqual(row3))){
             if (currentPlayer == "X"){
-                declareWinner("Player 2 ")
+                declareWinner(name2.innerHTML)
             }
             else{
-                declareWinner("Player 1 ")
+                declareWinner(name1.innerHTML)
             }
 
         }
         if ((allAreEqual(col1))||(allAreEqual(col2))||(allAreEqual(col3))){
             if (currentPlayer == "X"){
-                declareWinner("Player 2")
+                declareWinner(name2.innerHTML)
             }
             else{
-                declareWinner("Player 1")
+                declareWinner(name1.innerHTML)
             }        }
         if ((allAreEqual(diag1))||(allAreEqual(diag2))){
             if (currentPlayer == "X"){
-                declareWinner("Player 2")
+                declareWinner(name2.innerHTML)
             }
             else{
-                declareWinner("Player 1")
+                declareWinner(name1.innerHTML)
             }        
         }
         if ((tile1.hasChildNodes()) && (tile2.hasChildNodes()) && (tile3.hasChildNodes()) 
@@ -208,7 +239,7 @@ const gameController = (function() {
 
 
     }
-    return {makeMove,switchPlayer,checkWinner,declareWinner,clearBoard}
+    return {makeMove,switchPlayer,checkWinner,declareWinner,clearBoard,startTheGame}
 
 })();
 
